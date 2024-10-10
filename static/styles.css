@@ -1,0 +1,116 @@
+/* General styles for the application */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    background: linear-gradient(to right, #00b4db, #0083b0);
+    color: #ffffff;
+}
+
+.sidebar {
+    width: 250px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    height: 100%;
+}
+
+.sidebar h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+.content {
+    margin-left: 270px;
+    padding: 20px;
+    width: calc(100% - 270px);
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    background-color: #0083b0;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #00b4db;
+}
+
+p {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Login page specific styles */
+
+.login-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+input[type="text"], input[type="password"], select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+p.error {
+    color: red;
+    text-align: center;
+}

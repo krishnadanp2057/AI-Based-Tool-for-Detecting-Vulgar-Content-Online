@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uploaded Texts</title>
+    <style>
+        /* styles.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #00b4db, #0083b0); /* Gradient background */
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+textarea, input[type="submit"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+input[type="submit"] {
+    background-color: #0083b0; /* Button color */
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #00b4db; /* Button hover color */
+}
+
+p {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#uploadedText {
+    font-size: 1.2em;
+    margin-top: 20px;
+    padding: 20px;
+    background: #ffffff;
+    color: #000000;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #00b4db; /* Button color */
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0083b0; /* Button hover color */
+}
+
+    </style>
+</head>
+<body>
+    <h1>Uploaded Texts</h1>
+    <div id="texts"></div>
+
+    <script>
+        // Fetch and display the uploaded texts
+        fetch('http://127.0.0.1:5000/uploaded-texts')
+            .then(response => response.json())
+            .then(data => {
+                var textsElement = document.getElementById('texts');
+                if (data.texts.length > 0) {
+                    textsElement.innerHTML = '<ul>' + data.texts.map(text => `<li>${text}</li>`).join('') + '</ul>';
+                } else {
+                    textsElement.textContent = 'No texts have been uploaded yet.';
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                textsElement.textContent = 'An error occurred.';
+            });
+    </script>
+</body>
+</html>
