@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Check</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login_styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>Check Text for Offensive Language</h1>
+            <form id="postForm">
+                <label for="text">Enter text here:</label><br>
+                <textarea id="text" name="text" rows="4" cols="50"></textarea><br><br>
+                <input type="submit" value="Check Text" class="submit-btn">
+            </form>
+            <p id="message"></p>
+            <a href="/" class="back-button">Go Back</a>
+            <a href="{{ url_for('logout') }}" class="back-button">Logout</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('postForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var text = document.getElementById('text').value;
+            var messageElement = document.getElementById('message');
+
+            fetch('/check-text', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: text }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                messageElement.textContent = data.message;
+                messageElement.style.color = data.message.includes('inappropriate') ? 'red' : 'green';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                messageElement.textContent = 'An error occurred.';
+                messageElement.style.color = 'orange';
+            });
+        });
+    </script>
+</body>
+</html>

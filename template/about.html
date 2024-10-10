@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="#">Contact</a></li>
+            {% if 'username' in session %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="content">
+        <div class="container">
+            <h1>About This Project</h1>
+            <p>Welcome to the Offensive Language Checker web application! This project is designed to help users identify and filter offensive language in text submissions. Below are some key features and details about the project:</p>
+            <ul>
+                <li><strong>Purpose:</strong> The main goal of this application is to automatically detect and flag offensive language in user-submitted text. This is useful for moderating content and ensuring a positive environment in online platforms.</li>
+                <li><strong>Features:</strong>
+                    <ul>
+                        <li><strong>Text Checking:</strong> Users can submit text, which is then checked for offensive language using a pre-trained machine learning model.</li>
+                        <li><strong>Admin Dashboard:</strong> Admins can log in to view a list of offensive texts detected by the system. This feature helps in monitoring and managing flagged content.</li>
+                        <li><strong>User Authentication:</strong> The application supports user authentication with separate roles for regular users and admins, ensuring secure and appropriate access to features.</li>
+                    </ul>
+                </li>
+                <li><strong>Technologies Used:</strong> This project uses Flask for the web framework, scikit-learn for the machine learning model, and basic HTML/CSS for the frontend. The machine learning model is trained to identify offensive language based on a dataset of labeled examples.</li>
+                <li><strong>Future Improvements:</strong> Future enhancements could include a more sophisticated model, additional features for content management, and better user interface design.</li>
+            </ul>
+            <p>Thank you for visiting the Offensive Language Checker web application. We hope you find it useful!</p>
+           
+        </div>
+    </div>
+</body>
+</html>

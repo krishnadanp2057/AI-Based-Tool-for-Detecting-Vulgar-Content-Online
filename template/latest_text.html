@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Text</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+
+            {% if 'username' in session %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="content">
+        <div class="container">
+            <h1>Comment Posted😃</h1>
+            <p id="latest-text">Loading...</p>
+            <p><a href="{{ url_for('home') }}">Another Response</a></p>
+            <script>
+                fetch('/latest-text')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('latest-text').textContent = data.text;
+                    });
+            </script>
+        </div>
+    </div>
+</body>
+</html>

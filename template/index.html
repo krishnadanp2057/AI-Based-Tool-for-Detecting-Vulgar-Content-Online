@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offensive Language Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+
+            {% if 'username' in session %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="content">
+        <div class="container">
+            <h1>Assess Comment for Approval</h1>
+            <form id="postForm">
+                <label for="text">Share your musings:</label><br>
+                <textarea id="text" name="text" rows="4" cols="50"></textarea><br><br>
+                <input type="submit" value="Review Content">
+            </form>
+            <p id="message"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('postForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevents the default form submission
+
+            var text = document.getElementById('text').value; // Gets the value from the textarea
+            var messageElement = document.getElementById('message'); // Gets the element to display the message
+
+            fetch('/check-text', {  // Sends a POST request to the Flask backend
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: text }), // Sends the text as JSON
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.offensive) {
+                    messageElement.textContent = 'The text is offensive and cannot be posted.';
+                    messageElement.style.color = 'red';
+                } else {
+                    messageElement.textContent = 'The text is not offensive and has been uploaded.';
+                    messageElement.style.color = 'green';
+                    // Redirect to show the latest text
+                    window.location.href = '/latest-text.html';
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                messageElement.textContent = 'An error occurred.';
+                messageElement.style.color = 'orange';
+            });
+        });
+    </script>
+</body>
+</html>
