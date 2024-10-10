@@ -1,1 +1,2 @@
 # AI-Based-Tool-for-Detecting-Vulgar-Content-Online
+The AI-Based Tool for Detecting Vulgar Content Online is a machine learning application designed to identify and filter out offensive language in text-based communications across various platforms, including social media, forums, and chat applications. This tool leverages natural language processing (NLP) techniques and advanced algorithms to analyze user-generated content and flag potentially harmful or inappropriate language.
