@@ -1,0 +1,13 @@
+
+User: user - Offensive Text: I hate you
+User: user - Offensive Text: I hate you
+User: user - Offensive Text: hell
+User: user - Offensive Text: what the hell
+User: user - Offensive Text: what the hell
+User: user1 - Offensive Text: I hate you
+User: user1 - Offensive Text: what the hell
+User: user1 - Offensive Text: what the hell
+User: user1 - Offensive Text: what the hell
+User: user1 - Offensive Text: what the hell
+User: user2 - Offensive Text: I hate you
+User: user1 - Offensive Text: I hate you
